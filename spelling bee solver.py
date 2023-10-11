@@ -10,7 +10,10 @@ import time
 letters = ("abcdefghijklmnoqprstuwvxyz")
 letterslst = []
 wordlistfinal = []
+grayletterlist = []
+yellowletterlist = []
 
+print("Welcome to the amazing spelling bee solver")
 #open file containing word list
 with open('words_alpha.txt') as f_obj:
     lista = f_obj.read().split()
@@ -20,9 +23,16 @@ with open('words_alpha.txt') as f_obj:
     lista3 = f_obj.read().split()
 
 #letter input
-letter_input= input("wpisz 6 liter: ")
-middle_letter = input("wpisz literę ze środka: ")
+letter_input= input("Input 6 letters that are in gray hexagons: ")
+middle_letter = input("Input the middle letter that is yellow hexagons: ")
 
+for letter in letter_input:
+    grayletterlist.append(letter)
+for letter in middle_letter:
+    yellowletterlist.append(letter)
+
+print(f'Your gray letters are: {grayletterlist}')
+print(f'Your yellow letters are: {yellowletterlist}')
 #create a list for letters
 for letter in letters:
     letterslst.append(letter)
@@ -34,10 +44,10 @@ for i in range(0, len(letters)):
             letterslst.remove(letters[i])
             break
 
-#alphabet without input letters
-print(str(letterslst))
-print(len(lista))
-print(len(letterslst))
+
+# print(str(letterslst))
+# print(len(lista))
+# print(len(letterslst))
 
 #checking if the word contains more than the provided letters
 for i in tqdm(range(0, len(lista))):
