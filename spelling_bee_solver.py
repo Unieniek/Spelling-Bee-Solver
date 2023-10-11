@@ -18,7 +18,7 @@ list2=[]
 print("Welcome to the amazing spelling bee solver")
 
 #open file containing word list
-with open('words_alpha.txt') as f_obj:
+with open('../Wordle solver/words_alpha.txt') as f_obj:
     list = f_obj.read().split()
 
 #create a driver for opening browser
