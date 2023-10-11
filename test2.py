@@ -6,22 +6,33 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
 from selenium.webdriver.chrome import service
-input_letter_list = []
-
-#webbrowser.open('https://spellsbee.com', new=2)
-#time.sleep(3)
-
-litery=[] #List to store name of the product
+import webdriver_manager
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
+import os
 
 
-#driver = webdriver.Chrome("/usr/lib/operagx-browser/chromedriver")
-driver = webdriver.Chrome()
+
+
+litery=[]
+literasrodkowa=[]
+
+
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
 driver.get("https://spellsbee.com")
 content = driver.page_source
-soup = BeautifulSoup(content)
-for a in soup.findAll('a',href=True, attrs={'button'}):
-    key0=a.find('div', attrs={'button':'key-0'})
+soup = BeautifulSoup(content, 'html.parser')
+
+for i in range(0,7):
+    button_list = soup.find('button', {"id":f"key-{i}"})
+    button_list_text = button_list.text
+    print(button_list_text)
+    if i != 3:
+        litery.append(button_list_text)
+    elif i == 3:
+        literasrodkowa.append(button_list_text.lower())
 
 print(litery)
-
+print(literasrodkowa)
 
